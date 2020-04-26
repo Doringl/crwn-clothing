@@ -5,7 +5,6 @@ import DirectoryMenu from '../../components/directoryMenu/directoryMenu';
 const HomePage = () => {
   return (
     <div className='homePage'>
-      <h1>Welcome to my homepage</h1>
       <DirectoryMenu />
     </div>
   );
