@@ -5,11 +5,16 @@ import HomePage from './pages/homePage/homePage';
 import ShopPage from './pages/shopPage/shopPage';
 import MemberShipPage from './pages/memberShipPage/memberShipPage';
 import CheckOutPage from './pages/checkOutPage/checkOutPage';
+import OrderPage from './pages/orderPage/orderPage';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/userSelectors';
 import { createStructuredSelector } from 'reselect';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {
+  auth,
+  createUserProfileDocument,
+  updateDocument,
+} from './firebase/firebase.utils';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
@@ -19,6 +24,7 @@ class App extends React.Component {
     const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
+        updateDocument(userAuth);
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
           setCurrentUser({
@@ -50,6 +56,7 @@ class App extends React.Component {
               this.props.currentUser ? <Redirect to='/' /> : <MemberShipPage />
             }
           />
+          <Route exact path='/orders' component={OrderPage} />
         </Switch>
       </div>
     );

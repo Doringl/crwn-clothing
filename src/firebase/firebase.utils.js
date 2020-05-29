@@ -20,11 +20,13 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
+    let orders = [];
     try {
       await userReferance.set({
         displayName,
         email,
         createdAt,
+        orders,
         ...additionalData,
       });
     } catch (error) {
@@ -44,6 +46,24 @@ export const addCollectionAndDocument = async (collectionKey, objectToAdd) => {
   });
 
   return await batch.commit();
+};
+
+export const updateDocument = async (userAuth, itemsToAdd) => {
+  if (!userAuth) return;
+  const documentRef = fireStore.doc(`users/${userAuth.id}`);
+  const snapShot = await documentRef.get();
+  if (snapShot.exists) {
+    try {
+      await documentRef.set(
+        {
+          orders: itemsToAdd,
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 };
 
 export const convertCollectionsSnapshotToMap = (collections) => {

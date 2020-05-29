@@ -1,13 +1,27 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import { connect } from 'react-redux';
+import { clearAllItem } from '../../redux/cart/cartActions';
+import { withRouter } from 'react-router-dom';
+import { updateDocument } from '../../firebase/firebase.utils';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/userSelectors';
 
-const StripeButton = ({ price }) => {
+const StripeButton = ({
+  currentUser,
+  cartItems,
+  price,
+  clearAllItem,
+  history,
+}) => {
   const priceForStripe = price * 100;
   const publishableKey = 'pk_test_KaKg3oAYnehnQlbExEoiVAst0025Z5kQh1';
 
   const onToken = (token) => {
-    console.log(token);
-    alert('Payment succesfull');
+    alert(`Payment succesfull dear ${token.card.name}`);
+    updateDocument(currentUser, cartItems);
+    clearAllItem();
+    history.push('/orders');
   };
 
   return (
@@ -26,4 +40,14 @@ const StripeButton = ({ price }) => {
   );
 };
 
-export default StripeButton;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  clearAllItem: () => dispatch(clearAllItem()),
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(StripeButton)
+);

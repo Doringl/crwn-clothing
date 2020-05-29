@@ -3,6 +3,7 @@ import { addItemToCart, removeItemFromCart } from './cartUtils';
 
 const INITIAL_STATE = {
   hidden: true,
+  dropDownHidden: true,
   cartItems: [],
 };
 
@@ -12,6 +13,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hidden: !state.hidden,
+      };
+    case CartActionTypes.TOGGLE_DROPDOWN_HIDDEN:
+      return {
+        ...state,
+        dropDownHidden: !state.dropDownHidden,
       };
     case CartActionTypes.ADD_ITEM:
       return {
@@ -29,6 +35,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: state.cartItems.filter(
           (cartItem) => cartItem.id !== action.payload.id
         ),
+      };
+    case CartActionTypes.CLEAR_ALL_ITEM:
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;
