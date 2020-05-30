@@ -11,6 +11,7 @@ const NewComponent = WithOrders(CheckOutItem);
 const OrderPage = ({ userOrders }) => {
   return (
     <div className='orderPage'>
+      <h2 className='title'>Order Summary</h2>
       <div className='orderHeader'>
         <div className='headerBlock'>
           <span>Product</span>
@@ -23,6 +24,9 @@ const OrderPage = ({ userOrders }) => {
         </div>
         <div className='headerBlock'>
           <span>Price</span>
+        </div>
+        <div className='headerBlock'>
+          <span></span>
         </div>
       </div>
       {userOrders

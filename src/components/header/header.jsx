@@ -47,7 +47,7 @@ const Header = ({
             </div>
             <div className={`${dropDownHidden ? '' : 'show'} dropdownContent`}>
               <div className='option'>
-                <Link to={'/orders'}>My Orders</Link>
+                <Link to={'/orders'}>Order Summary</Link>
               </div>
               <div className='option' onClick={() => auth.signOut()}>
                 Sign Out

@@ -15,11 +15,16 @@
 
     .headerBlock {
       text-transform: capitalize;
-      width: 23%;
+      width: 28%;
 
       &:last-child {
         width: 8%;
       }
     }
+  }
+
+  .title {
+    font-size: 38px;
+    margin: 0 auto 30px;
   }
 }

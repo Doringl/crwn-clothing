@@ -56,7 +56,13 @@ class App extends React.Component {
               this.props.currentUser ? <Redirect to='/' /> : <MemberShipPage />
             }
           />
-          <Route exact path='/orders' component={OrderPage} />
+          <Route
+            exact
+            path='/orders'
+            render={() =>
+              this.props.currentUser ? <OrderPage /> : <Redirect to='/' />
+            }
+          />
         </Switch>
       </div>
     );
