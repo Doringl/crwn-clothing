@@ -1,20 +1,35 @@
-### Crown Clothing
+# Crown Clothing
 
-###### Projede Yapılanlar :
+##[Demo](https://crown-clothing-canli.herokuapp.com/)
 
-- Firebase veritabanı ile çalışma,
-- Google veya e-posta / şifre ile kayıt / kimlik doğrulama,
-- Sunucudan veri indirirken spinner göstermek için HOC,
-- Stripe ile ödeme,
-- Oturumdaki sepete ürüne kaydedilmesi, yetkilendirmesine bakılmaksızın, tarayıcıyı kapatsa veya sayfayı yeniden yüklemelerine rağmen, ürünler kaybolmaz.
+### Recent Features :
 
-###### Kullanılan Araçlar :
+- When payment complete we are clear the state old items and for showing old items adding orderPage feature with withOrderHOC.
 
-- Firebase
-- Redux
-- Redux-reselect
-- Redux-persist
-- Redux-thunk
+### Roadmap :
+
+- [x] React Router and Routing,
+- [x] Firebase and User Authentication,
+- [x] Redux,
+- [x] Session Storage and Persistence (Redux-Persist),
+- [ ] Advanced Routing, ![80%](https://progress-bar.dev/80)
+- [x] Stripe Payments,
+- [ ] Styled-Components,
+- [x] Advanced Redux and Firebase,
+- [x] HOC Patterns,
+- [x] Asynchronous Redux (Redux-Thunk),
+- [ ] Redux Saga,
+- [ ] React Hooks,
+- [ ] Advanced Stripe Payments and Backend,
+- [ ] Context API,
+- [ ] GraphQL and Apollo,
+- [ ] Mobile Support,
+- [ ] React Performance,
+- [ ] Progressive Web App,
+- [ ] Firebase Security,
+- [ ] Testing
+
+---
 
 ![Crown Clothing - 1](https://media.giphy.com/media/QCCwZ5ocpvleAlyogW/giphy.gif 'Crown Clothing - 1')
 

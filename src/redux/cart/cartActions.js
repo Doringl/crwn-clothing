@@ -19,8 +19,8 @@ export const clearItemFromCart = (item) => ({
   payload: item,
 });
 
-export const clearAllItem = () => ({
-  type: CartActionTypes.CLEAR_ALL_ITEM,
+export const clearCart = () => ({
+  type: CartActionTypes.CLEAR_CART,
 });
 
 export const toggleDropDownHidden = () => ({

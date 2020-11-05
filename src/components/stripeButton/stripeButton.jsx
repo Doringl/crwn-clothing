@@ -1,7 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
-import { clearAllItem } from '../../redux/cart/cartActions';
+import { clearCart } from '../../redux/cart/cartActions';
 import { withRouter } from 'react-router-dom';
 import { updateDocument } from '../../firebase/firebase.utils';
 import { createStructuredSelector } from 'reselect';
@@ -20,7 +20,7 @@ const StripeButton = ({
   const onToken = (token) => {
     alert(`Payment succesfull dear ${token.card.name}`);
     updateDocument(currentUser, cartItems);
-    clearAllItem();
+    clearCart();
     history.push('/orders');
   };
 
@@ -45,7 +45,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  clearAllItem: () => dispatch(clearAllItem()),
+  clearAllItem: () => dispatch(clearCart()),
 });
 
 export default withRouter(
