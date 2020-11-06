@@ -1,12 +1,11 @@
 import React from 'react';
 import './header.styles.scss';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectCartHidden,
   selectDropDownHidden,
 } from '../../redux/cart/cartSelectors';
 import { selectCurrentUser } from '../../redux/user/userSelectors';
-import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from '../../assets/logo/crwnLogo.svg';
 import { Link } from 'react-router-dom';
 import CardIcon from '../cartIcon/cartIcon';
@@ -14,13 +13,11 @@ import CartDropdown from '../cartDropdown/cartDropdown';
 import { toggleDropDownHidden } from '../../redux/cart/cartActions';
 import { SignOutStart } from '../../redux/user/userActions';
 
-const Header = ({
-  currentUser,
-  hidden,
-  dropDownHidden,
-  toggleDropDownHidden,
-  SignOutStart,
-}) => {
+const Header = () => {
+  const hidden = useSelector(selectCartHidden);
+  const currentUser = useSelector(selectCurrentUser);
+  const dropDownHidden = useSelector(selectDropDownHidden);
+  const dispatch = useDispatch();
   return (
     <div className='header'>
       <Link className='logoContainer' to='/'>
@@ -34,7 +31,10 @@ const Header = ({
           CONTACT
         </Link>
         {currentUser ? (
-          <div className='dropdown' onClick={toggleDropDownHidden}>
+          <div
+            className='dropdown'
+            onClick={() => dispatch(toggleDropDownHidden())}
+          >
             <div className='option'>
               {currentUser.displayName
                 ? currentUser.displayName.search(' ') !== -1
@@ -50,7 +50,7 @@ const Header = ({
               <div className='option'>
                 <Link to={'/orders'}>Order Summary</Link>
               </div>
-              <div className='option' onClick={SignOutStart}>
+              <div className='option' onClick={() => dispatch(SignOutStart())}>
                 Sign Out
               </div>
             </div>
@@ -67,15 +67,4 @@ const Header = ({
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
-  dropDownHidden: selectDropDownHidden,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  toggleDropDownHidden: () => dispatch(toggleDropDownHidden()),
-  SignOutStart: () => dispatch(SignOutStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

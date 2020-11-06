@@ -1,9 +1,10 @@
 # Crown Clothing
 
-##[Demo](https://crown-clothing-canli.herokuapp.com/)
+[Demo](https://crown-clothing-canli.herokuapp.com/)
 
 ### Recent Features :
 
+- Converted all our sign in, sign up and authentication persistence checks into sagas.
 - When payment complete we are clear the state old items and for showing old items adding orderPage feature with withOrderHOC.
 
 ### Roadmap :
@@ -17,8 +18,8 @@
 - [ ] Styled-Components,
 - [x] Advanced Redux and Firebase,
 - [x] HOC Patterns,
-- [x] Asynchronous Redux (Redux-Thunk),
-- [ ] Redux Saga,
+- [x] Asynchronous Redux (Redux-Thunk), changed to Redux Saga
+- [x] Redux Saga,
 - [ ] React Hooks,
 - [ ] Advanced Stripe Payments and Backend,
 - [ ] Context API,
