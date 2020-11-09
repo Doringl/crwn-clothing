@@ -4,6 +4,7 @@
 
 ### Recent Features :
 
+- Application updated with Hooks.
 - Converted all our sign in, sign up and authentication persistence checks into sagas.
 - When payment complete we are clear the state old items and for showing old items adding orderPage feature with withOrderHOC.
 
@@ -20,7 +21,7 @@
 - [x] HOC Patterns,
 - [x] Asynchronous Redux (Redux-Thunk), changed to Redux Saga
 - [x] Redux Saga,
-- [ ] React Hooks,
+- [x] React Hooks,
 - [ ] Advanced Stripe Payments and Backend,
 - [ ] Context API,
 - [ ] GraphQL and Apollo,

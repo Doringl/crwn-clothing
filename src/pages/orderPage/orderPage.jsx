@@ -2,13 +2,13 @@ import React from 'react';
 import './orderPage.styles.scss';
 import WithOrders from '../../components/withOrders/withOrders';
 import CheckOutItem from '../../components/checkOutItem/checkOutItem';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUserOrders } from '../../redux/user/userSelectors';
-import { createStructuredSelector } from 'reselect';
 
-const NewComponent = WithOrders(CheckOutItem);
+const CheckOutItemWithOrders = WithOrders(CheckOutItem);
 
-const OrderPage = ({ userOrders }) => {
+const OrderPage = () => {
+  const userOrders = useSelector(selectUserOrders);
   return (
     <div className='orderPage'>
       <h2 className='title'>Order Summary</h2>
@@ -31,15 +31,15 @@ const OrderPage = ({ userOrders }) => {
       </div>
       {userOrders
         ? userOrders.map((orders) => (
-            <NewComponent key={orders.id} cartItem={orders} withOrders={true} />
+            <CheckOutItemWithOrders
+              key={orders.id}
+              cartItem={orders}
+              withOrders={true}
+            />
           ))
         : []}
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  userOrders: selectUserOrders,
-});
-
-export default connect(mapStateToProps)(OrderPage);
+export default OrderPage;
